@@ -1,0 +1,5 @@
+- Cambiar el lado del interruptor de las baterias. 
+- Pines delatnerso del stem32 tanso los de abajo como los de arriba (Con los de abajo se hacen agujeros y con los de arriba lija.)
+- No espacio para circuiteria. Se debe amplear. 
+- Tapa para sacar y meter nueva baderias.
+- Agujeros de los push 7mm quedaron bien. 

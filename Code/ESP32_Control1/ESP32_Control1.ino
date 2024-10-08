@@ -21,6 +21,8 @@ const int botonPin = 15; // Elige el GPIO, en este caso GPIO 15, boton del josti
 const int botonPin1 = 4; // Elige el GPIO, en este caso GPIO 4
 const int botonPin2 = 0; // Elige el GPIO, en este caso GPIO 0
 
+char datos;
+
 int estadoBotonjos = 0;
 int estadoBoton1 = 0;
 int estadoBoton2 = 0;
@@ -96,6 +98,17 @@ void setup() {
 }
 
 void loop() {
+
+  if(Serial.available()){
+    datos=Serial.read();
+    Serial.print(datos);
+    
+     // Crear un arreglo de 2 caracteres para almacenar el dato leído y el carácter nulo
+    char cadena[2] = {datos, '\0'};
+    
+    enviar(cadena); // Llamar a enviar con una cadena correctamente formateada
+  }
+  
   // Leer el valor del potenciómetro (entre 0 y 4095 en el ESP32)
   valorPotx = analogRead(potPinx);
   valorPoty = analogRead(potPiny);

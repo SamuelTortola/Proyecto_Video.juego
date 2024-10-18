@@ -2,7 +2,7 @@
                                              Robson Couto, 2019
 */
 
-#include <EasyBuzzer.h> // Include the Easy Buzzer library
+#include "EasyBuzzer.h" // Incluye la librería Easy Buzzer Master
 
 #define NOTE_B0  31
 #define NOTE_C1  33
@@ -95,13 +95,13 @@
 #define NOTE_DS8 4978
 #define REST      0
 
-// Change this to make the song slower or faster
+// Cambia esto para hacer que la canción sea más rápida o más lenta
 int tempo = 108;
 
-// Change this to whichever pin you want to use
+// Cambia esto a cualquier pin que quieras usar
 int buzzer = 11;
 
-// Notes of the melody followed by the duration.
+// Notas de la melodía seguidas de la duración.
 int melody[] = {
   // Zelda's Lullaby - The Legend of Zelda Ocarina of Time. 
   NOTE_E4,2, NOTE_G4,4,
@@ -128,40 +128,40 @@ int melody[] = {
   NOTE_C5,-2, 
 };
 
-// Calculate the number of notes
+// Calcula el número de notas
 int notes = sizeof(melody) / sizeof(melody[0]) / 2;
 
-// This calculates the duration of a whole note in ms
+// Calcula la duración de una nota entera en ms
 int wholenote = (60000 * 4) / tempo;
 
 int divider = 0, noteDuration = 0;
 
 void setup() {
-  // Initialize the Easy Buzzer
+  // Inicializa el Easy Buzzer Master
   EasyBuzzer.begin(buzzer);
 
-  // Iterate over the notes of the melody.
+  // Itera sobre las notas de la melodía.
   for (int thisNote = 0; thisNote < notes * 2; thisNote += 2) {
-    // Calculate the duration of each note
+    // Calcula la duración de cada nota
     divider = melody[thisNote + 1];
     if (divider > 0) {
       noteDuration = (wholenote) / divider;
     } else if (divider < 0) {
       noteDuration = (wholenote) / abs(divider);
-      noteDuration *= 1.5; // Dotted notes
+      noteDuration *= 1.5; // Notas punteadas
     }
 
-    // Play the note using Easy Buzzer
+    // Reproduce la nota usando Easy Buzzer Master
     EasyBuzzer.tone(melody[thisNote], noteDuration * 0.9);
 
-    // Wait for the specified duration before playing the next note.
+    // Espera la duración especificada antes de tocar la siguiente nota.
     delay(noteDuration);
 
-    // Stop the sound
+    // Detiene el sonido
     EasyBuzzer.noTone();
   }
 }
 
 void loop() {
-  // No need to repeat the melody.
+  // No es necesario repetir la melodía.
 }

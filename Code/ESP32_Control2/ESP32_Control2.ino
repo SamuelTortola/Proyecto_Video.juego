@@ -6,7 +6,7 @@
  Proyecto: Video juego
  Hardware: STM32
  Creado: 30/09/2024
- Última modificación: 2/10/2024
+ Última modificación: 15/10/2024
 ******************************************************************************
  **/ 
 #include "ESP32_NOW.h"
@@ -18,7 +18,7 @@ const int potPinx = 34; // ADC1_CH6 en el ESP32
 const int potPiny = 35; // ADC1_CH7 en el ESP32
 const int botonPin = 15; // Elige el GPIO, en este caso GPIO 15, boton del jostick
 const int botonPin1 = 4; // Elige el GPIO, en este caso GPIO 4
-const int botonPin2 = 0; // Elige el GPIO, en este caso GPIO 0
+const int botonPin2 = 16; // Elige el GPIO, en este caso GPIO 16
 
 char datos;
 
@@ -32,7 +32,7 @@ int valorPoty = 0;
 
 
 // Dirección MAC del ESP32 A 
-const uint8_t macReceptorA[] = {0xC8, 0xF0, 0x9E, 0xF1, 0xCF, 0x50};
+const uint8_t macReceptorA[] = {0x94,0xB5,0x55,0xF2,0x98,0x10};
 
 // Crear una clase que herede de ESP_NOW_Peer
 class ESP_NOW_Peer_Class : public ESP_NOW_Peer {
@@ -175,7 +175,7 @@ void loop() {
     // Si el botón 1  está presionado (el estado será LOW)
   if (estadoBoton1 == LOW) {
     delay(20);
-    Serial.println("6");
+    Serial.println("6");   //Inicio del juego
     enviar("6");
 
     while(estadoBoton1 == LOW){
@@ -188,7 +188,7 @@ void loop() {
       // Si el botón 2  está presionado (el estado será LOW)
   if (estadoBoton2 == LOW) {
     delay(20);
-    Serial.println("7");
+    Serial.println("7"); //Pausa/Play del juego
     enviar("7");
 
     while(estadoBoton2 == LOW){
